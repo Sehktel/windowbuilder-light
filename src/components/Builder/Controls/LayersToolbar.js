@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
 import {withStyles} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import Tip from '../Tip';
+import Tip from 'wb-forms/dist/Common/Tip';
 
 export const useStyles = withStyles({
   title: {
@@ -15,7 +15,7 @@ export const useStyles = withStyles({
 });
 
 // создаёт слой и оповещает мир о новых слоях
-function addLayer(editor) {
+function addLayer(/*editor*/) {
   const l = new $p.EditorInvisible.Contour({parent: undefined});
   l.activate();
   //editor.eve.emit_async('rows', editor.project.ox, {constructions: true});

@@ -7,10 +7,12 @@
  */
 
 import paper from 'paper/dist/paper-core';
-import drawer from 'windowbuilder/dist/drawer';
+import drawer from 'wb-core/dist/drawer';
 import tools from './tools';
 import align from './align';
 import StableZoom from './StableZoom';
+import Deformer from './Deformer';
+import Mover from './Mover';
 
 export default function ($p) {
 
@@ -24,10 +26,15 @@ export default function ($p) {
       super();
       this._canvas = canvas;
       new EditorInvisible.Scheme(this._canvas, this, typeof window === 'undefined');
-      //this.create_scheme();
+
+      this._stable_zoom = new StableZoom(this);
+      this._deformer = new Deformer(this);
+      this._mover = new Mover(this);
+
+      this.project._use_skeleton = true;
       this.project._dp.value_change = this.dp_value_change.bind(this);
       this._recalc_timer = 0;
-      this._stable_zoom = new StableZoom(this);
+
       this.eve.on('coordinates_calculated', this.coordinates_calculated);
       this._canvas.addEventListener('touchstart', this.canvas_touchstart, false);
       this._canvas.addEventListener('mousewheel', this._stable_zoom.mousewheel, false);
@@ -172,6 +179,22 @@ export default function ($p) {
       });
       rect.guide = true;
       return rect;
+    }
+
+    fragment_spec(elm, name) {
+      const {ui: {dialogs}, cat: {characteristics}} = $p;
+      if(elm) {
+        return dialogs.alert({
+          timeout: 0,
+          title: `Спецификация ${elm >= 0 ? 'элемента' : 'слоя'} №${Math.abs(elm)} (${name})`,
+          Component: characteristics.SpecFragment,
+          props: {_obj: this.project.ox, elm},
+          initFullScreen: true,
+          hide_btn: true,
+          noSpace: true,
+        });
+      }
+      dialogs.alert({text: 'Элемент не выбран', title: $p.msg.main_title});
     }
 
     unload() {

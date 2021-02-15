@@ -1,14 +1,14 @@
 {
   "name": "windowbuilder-light",
-  "version": "2.1.252",
+  "version": "2.1.253",
   "description": "Order dealer for windows and stained glass",
   "repository": {
     "type": "git",
     "url": "https://github.com/unpete/windowbuilder-light.git"
   },
   "engines": {
-    "node": "^8.15",
-    "npm": "^6.12"
+    "node": "^12.18",
+    "npm": "^6.14"
   },
   "keywords": [
     "metadata",
@@ -27,19 +27,19 @@
   "homepage": "https://light.oknosoft.ru/",
   "proxy": "http://localhost:3016/",
   "dependencies": {
-    "@material-ui/lab": "^4.0.0-alpha.51",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@turf/points-within-polygon": "^5.1.5",
-    "md5-file": "^4.0.0",
-    "metadata-abstract-ui": "2.0.22-beta.6",
-    "metadata-core": "2.0.22-beta.6",
-    "metadata-pouchdb": "2.0.22-beta.6",
-    "metadata-react": "2.0.22-beta.6",
-    "metadata-redux": "2.0.22-beta.6",
-    "metadata-superlogin": "2.0.22-beta.6",
-    "paper-jsdom-canvas": "^0.12.4",
+    "md5-file": "^5.0",
+    "metadata-abstract-ui": "2.0.23-beta.3",
+    "metadata-core": "2.0.23-beta.3",
+    "metadata-pouchdb": "2.0.23-beta.3",
+    "metadata-react": "2.0.23-beta.3",
+    "metadata-redux": "2.0.23-beta.3",
+    "metadata-superlogin": "2.0.23-beta.3",
+    "paper-jsdom-canvas": "0.12.8",
     "react-highlight-words": "^0.16.0",
-    "redux-dynamic-middlewares": "^2.0.0",
-    "windowbuilder": "github:oknosoft/windowbuilder-core#ae1c3da45e2c2c3444917dae27e44ec9448ddf84"
+    "wb-core": "github:oknosoft/windowbuilder-core#f87a4482bde9c83cca968c0cfca4d32ef1dcef88",
+    "wb-forms": "github:oknosoft/windowbuilder-forms#015fe37b7d85b1123a3fc4b9b37a5e32232bb525"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
@@ -47,8 +47,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@typescript-eslint/eslint-plugin": "^2.30.0",
-    "@typescript-eslint/parser": "^2.30.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",

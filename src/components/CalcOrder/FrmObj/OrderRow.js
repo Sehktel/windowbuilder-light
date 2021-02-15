@@ -14,23 +14,22 @@ import ListItem from '@material-ui/core/List';
 import Button from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Tip from '../../Builder/Tip';
+import Tip from 'wb-forms/dist/Common/Tip';
 import Quantity from './Quantity';
 import Amount from './Amount';
 
-import {path} from '../../App/menu_items';
-import withStyles from './styles';
+import withStyles from 'wb-forms/dist/CalcOrder/FrmObj/styles';
 
 
-function OrderRow({row, classes, handlers}) {
+function OrderRow({row, classes, handlers, is_technologist}) {
   const {_owner, nom, characteristic: ox} = row;
   const {obj_delivery_state, sending_stage} = _owner._owner;
   const {utils: {scale_svg}, ui: {dialogs}} = $p;
-  const editable = obj_delivery_state == 'Черновик' && sending_stage.empty();
+  const editable = is_technologist || ((obj_delivery_state == 'Черновик' || obj_delivery_state == 'Отозван') && sending_stage.empty());
 
   function edit() {
     if(editable) {
-      handlers.handleNavigate(path(`builder/${ox.ref}`));
+      handlers.handleNavigate(`/builder/${ox.ref}`);
     }
     else {
       dialogs.alert({text: `Нельзя редактировать изделия, когда заказ в статусе '${sending_stage}'`, title: 'Статус отправки'});
@@ -99,6 +98,7 @@ OrderRow.propTypes = {
   row: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   handlers: PropTypes.object.isRequired,
+  is_technologist: PropTypes.bool,
 };
 
 export default withStyles(OrderRow);

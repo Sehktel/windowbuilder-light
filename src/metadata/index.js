@@ -14,11 +14,12 @@ import settings from '../../config/app.settings';
 import {patch_prm, patch_cnn} from '../../config/patch_cnn';
 
 // читаем скрипт инициализации метаданных, полученный в результате выполнения meta:prebuild
-import meta_init from 'windowbuilder/dist/init';
+import meta_init from 'wb-core/dist/init';
 import modifiers from './modifiers';
 
 // конструкторы ui
 import {lazy} from '../components/App/lazy';
+import {user_log_in, user_log_out} from '../components/App/tune_menu';
 
 // генераторы действий и middleware для redux
 //import {combineReducers} from 'redux';
@@ -76,8 +77,10 @@ export function init(store) {
 
     pouch.on({
       on_log_in() {
-        return load_ram($p);
-      }
+        return load_ram($p)
+          .then(user_log_in);
+      },
+      user_log_out,
     });
     md.once('predefined_elmnts_inited', () => pouch.emit('pouch_complete_loaded'));
 
